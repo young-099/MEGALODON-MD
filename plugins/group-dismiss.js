@@ -8,7 +8,7 @@ cmd({
     react: "⬇️",
     filename: __filename
 },
-async(conn, mek, m, {
+async (conn, mek, m, {
     from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isCreator, isDev, isAdmins, reply
 }) => {
     // Check if the command is used in a group
@@ -22,9 +22,9 @@ async(conn, mek, m, {
 
     let number;
     if (m.quoted) {
-        number = m.quoted.sender.split("@")[0]; // If replying to a message, get the sender's number
+        number = m.quoted.sender.split("@")[0]; // From quoted message
     } else if (q && q.includes("@")) {
-        number = q.replace(/[@\s]/g, ''); // If manually typing a number
+        number = q.replace(/[@\s]/g, ''); // From argument like @123456789
     } else {
         return reply("❌ Please reply to a message or provide a number to demote.");
     }
@@ -34,11 +34,14 @@ async(conn, mek, m, {
 
     const jid = number + "@s.whatsapp.net";
 
+    // Check if user is currently an admin
+    if (!groupAdmins.includes(jid)) return reply("❌ This user is not an admin.");
+
     try {
         await conn.groupParticipantsUpdate(from, [jid], "demote");
         reply(`✅ Successfully demoted @${number} to a normal member.`, { mentions: [jid] });
     } catch (error) {
         console.error("Demote command error:", error);
-        reply("❌ Failed to demote the member.");
+        reply(`❌ Failed to demote the member.\n\nError: ${error?.message || error}`);
     }
 });
