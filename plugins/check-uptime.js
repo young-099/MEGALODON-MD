@@ -1,6 +1,8 @@
+
 const { cmd } = require('../command');
 const { runtime } = require('../lib/functions');
 const config = require('../config');
+const pkg = require('../package.json');
 
 cmd({
     pattern: "uptime",
@@ -10,83 +12,82 @@ cmd({
     react: "⏱️",
     filename: __filename
 },
-async (conn, mek, m, { from, reply }) => {
+async (conn, mek, m, { from, reply, args }) => {
     try {
         const uptime = runtime(process.uptime());
-        const startTime = new Date(Date.now() - process.uptime() * 1000);
-        
-        // Style 1: Classic Box
-        const style1 = `╭───『 UPTIME 』───⳹
-│
+        const seconds = Math.floor(process.uptime());
+        const startTime = new Date(Date.now() - seconds * 1000);
+        const version = pkg.version || "1.0.0";
+
+        const styles = [
+`╭───『 UPTIME 』───⳹
 │ ⏱️ ${uptime}
-│
+│ 🧭 ${seconds} seconds
 │ 🚀 Started: ${startTime.toLocaleString()}
 ╰────────────────⳹
-> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`;
+> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`,
 
+`🅤🅟🅣🅘🅜🅔 🅢🅣🅢🅣🅤🅢
+♢ Running: ${uptime}
+♢ Seconds: ${seconds}
+♢ Since: ${startTime.toLocaleDateString()}
+> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`,
 
-        // Style 3: Fancy Borders
-        const style3 = `▄▀▄▀▄ 𝐌𝐄𝐆𝐀𝐋𝐎𝐃𝐎𝐍-𝐌𝐃 UPTIME ▄▀▄▀▄
-
-  ♢ Running: ${uptime}
-  ♢ Since: ${startTime.toLocaleDateString()}
-  
-> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`;
-
-        // Style 4: Code Style
-        const style4 = `┌──────────────────────┐
-│  ⚡ UPTIME STATUS ⚡  │
+`┌──────────────────────┐
+│  ⚡ UPTIME STATUS ⚡  
 ├─────────────────────
 │ • Time: ${uptime}
+│ • Seconds: ${seconds}
 │ • Started: ${startTime.toLocaleString()}
-│ • Version: 1.0.0
-└──────────────────────┘`;
+│ • Version: ${version}
+└──────────────────────┘`,
 
-        // Style 5: Modern Blocks
-        const style5 = `▰▰▰▰▰ UPTIME ▰▰▰▰▰
+`▰▰▰▰▰ 🅤🅟🅣🅘🅜🅔 ▰▰▰▰▰
+> ⏳ ${uptime}
+> 🕰️ ${startTime.toLocaleString()}
+> 🔢 ${seconds} seconds
+> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`,
 
-  ⏳ ${uptime}
-  🕰️ ${startTime.toLocaleString()}
-  
-> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`;
-
-        // Style 6: Retro Terminal
-        const style6 = `╔══════════════════════╗
+`╔══════════════════════╗
 ║   𝐌𝐄𝐆𝐀𝐋𝐎𝐃𝐎𝐍-𝐌𝐃 UPTIME    
 ╠══════════════════════
 ║  RUNTIME: ${uptime}
+║  SECONDS: ${seconds}
 ║  SINCE: ${startTime.toLocaleString()}
-╚══════════════════════╝`;
+╚══════════════════════╝`,
 
-    
+`> ⏱️ *UᎮTIMᏋ ᎦTᏘTUᎦ* ⏱️
+> 🟢 Online for: ${uptime}
+> 🔢 Seconds: ${seconds}
+> 📅 Since: ${startTime.toLocaleString()}
+> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`,
 
-        // Style 8: Social Media Style
-        const style8 = `⏱️ *Uptime Report* ⏱️
-
-🟢 Online for: ${uptime}
-📅 Since: ${startTime.toLocaleString()}
-
-
-> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`;
-
-        
-        // Style 10: Professional
-        const style10 = `┏━━━━━━━━━━━━━━━━━━┓
+`┏━━━━━━━━━━━━━━━━━━┓
 ┃  𝐌𝐄𝐆𝐀𝐋𝐎𝐃𝐎𝐍-𝐌𝐃  
 ┗━━━━━━━━━━━━━━━━━━┛
-
 ◈ Duration: ${uptime}
+◈ Seconds: ${seconds}
 ◈ Start Time: ${startTime.toLocaleString()}
 ◈ Stability: 100%
-◈ Version:  1.0.0
+◈ Version: ${version}
+> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`
+        ];
 
-> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`;
+        let selectedStyle;
+        if (args[0] && args[0].toLowerCase().startsWith("style")) {
+            const index = parseInt(args[0].replace("style", "")) - 1;
+            if (!isNaN(index) && styles[index]) {
+                selectedStyle = styles[index];
+            } else {
+                return reply(`❌ Style not found.\n✅ Use: style1 to style${styles.length}`);
+            }
+        } else {
+            selectedStyle = styles[Math.floor(Math.random() * styles.length)];
+        }
 
-        const styles = [style1, style3, style4, style5, style6, style8, style10];
-        const selectedStyle = styles[Math.floor(Math.random() * styles.length)];
-
-        await conn.sendMessage(from, { 
-            text: selectedStyle,
+        await conn.sendMessage(from, {
+            image: { url: 'https://files.catbox.moe/xc6eca.jpg' },
+            caption: selectedStyle,
             contextInfo: {
                 mentionedJid: [m.sender],
                 forwardingScore: 999,
