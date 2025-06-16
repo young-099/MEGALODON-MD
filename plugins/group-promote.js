@@ -2,13 +2,13 @@ const { cmd } = require('../command');
 
 cmd({
     pattern: "promote",
-    alias: ["p", "makeadmin"],
-    desc: "Promotes a member to group admin",
+    alias: ["p", "addadmin"],
+    desc: "Promotes a group member to admin",
     category: "group",
     react: "⬆️",
     filename: __filename
 },
-async(conn, mek, m, {
+async (conn, mek, m, {
     from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isCreator, isDev, isAdmins, reply
 }) => {
     // Check if the command is used in a group
@@ -22,23 +22,26 @@ async(conn, mek, m, {
 
     let number;
     if (m.quoted) {
-        number = m.quoted.sender.split("@")[0]; // If replying to a message, get the sender's number
+        number = m.quoted.sender.split("@")[0];
     } else if (q && q.includes("@")) {
-        number = q.replace(/[@\s]/g, ''); // If manually typing a number
+        number = q.replace(/[@\s]/g, '');
     } else {
         return reply("❌ Please reply to a message or provide a number to promote.");
     }
 
     // Prevent promoting the bot itself
-    if (number === botNumber) return reply("❌ The bot cannot promote itself.");
+    if (number === botNumber) return reply("❌ I am already an admin.");
 
     const jid = number + "@s.whatsapp.net";
 
+    // Check if user is already an admin
+    if (groupAdmins.includes(jid)) return reply("❌ This user is already an admin.");
+
     try {
         await conn.groupParticipantsUpdate(from, [jid], "promote");
-        reply(`✅ Successfully promoted @${number} to admin.`, { mentions: [jid] });
+        reply(`✅ Successfully promoted @${number} to group admin.`, { mentions: [jid] });
     } catch (error) {
         console.error("Promote command error:", error);
-        reply("❌ Failed to promote the member.");
+        reply(`❌ Failed to promote the member.\n\nError: ${error?.message || error}`);
     }
 });
