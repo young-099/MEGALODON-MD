@@ -45,7 +45,6 @@ async (dyby, mek, m, { from, reply }) => {
 *┃❍* *ᴅᴇᴠ* : *ᴅʏʙʏ ᴛᴇᴄʜ*
 *┃❍* *ᴠᴇʀsɪᴏɴs* : *1.0.0*
 *╰════════════════⊷*
-
 `;
     let category = {};
     for (let cmd of commands) {
