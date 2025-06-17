@@ -44,8 +44,7 @@ async (dyby, mek, m, { from, reply }) => {
 *┃❍* *ᴩʟᴜɢɪɴ* :  ${totalCommands}
 *┃❍* *ᴅᴇᴠ* : *ᴅʏʙʏ ᴛᴇᴄʜ*
 *┃❍* *ᴠᴇʀsɪᴏɴs* : *1.0.0*
-*╰════════════════⊷*
-`;
+*╰════════════════⊷*`;
     let category = {};
     for (let cmd of commands) {
       if (!cmd.category) continue;
