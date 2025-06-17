@@ -12,7 +12,7 @@ cmd({
     pattern: "env",
     alias: ["config", "setting"],
     desc: "Show all bot configuration variables (Owner Only)",
-    category: "system",
+    category: "settings",
     react: "⚙️",
     filename: __filename
 }, 
