@@ -21,20 +21,20 @@ cmd({
   try {
     if (!q) return reply("❎ Please provide text to convert.\n\n*Example:* .fancy Hello");
 
-    const apiUrl = `https://www.dark-yasiya-api.site/other/font?text=${encodeURIComponent(q)}`;
+    const apiUrl = `https://billowing-waterfall-dbab.bot1newnew.workers.dev/?word=${encodeURIComponent(q)}`;
     const res = await axios.get(apiUrl);
 
-    if (!res.data.status || !Array.isArray(res.data.result)) {
+    if (!Array.isArray(res.data)) {
       return reply("❌ Error fetching fonts. Try again later.");
     }
 
-    const fonts = res.data.result;
+    const fonts = res.data;
     const maxDisplay = 44;
     const displayList = fonts.slice(0, maxDisplay);
 
     let menuText = "╭──〔 *FANCY STYLES* 〕──⬣\n";
     displayList.forEach((f, i) => {
-      menuText += `┃ ${i + 1}. ${f.result}\n`;
+      menuText += `┃ ${i + 1}. ${f}\n`;
     });
     menuText += "╰──────────────⬣\n\n📌 *Reply with the number to select a font style for:*\n❝ " + q + " ❞";
 
@@ -63,7 +63,7 @@ cmd({
         }
 
         const chosen = displayList[selectedNumber - 1];
-        const finalText = `✨ *Your Text in ${chosen.name || 'Selected Style'}:*\n\n${chosen.result}\n\n> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`;
+        const finalText = `✨ *Your Text in Selected Style:*\n\n${chosen}\n\n> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`;
 
         await conn.sendMessage(from, {
           text: finalText
