@@ -21,12 +21,13 @@ cmd({
 
     participants.forEach((p, i) => {
       const number = p.id.split("@")[0];
-      const name = `Group Contact ${i + 1}`;
+      const name = store.contacts[p.id]?.name || p?.notify || `Group Contact ${i + 1}`;
+      const safeName = name.replace(/[^\w\s\-]/g, ""); // sanitize name
 
       vcfContent += `BEGIN:VCARD
 VERSION:3.0
-FN:${name}
-N:${name};;;;
+FN:${safeName}
+N:${safeName};;;;
 TEL;type=CELL;waid=${number}:+${number}
 END:VCARD
 `;
@@ -43,6 +44,7 @@ END:VCARD
     );
 
     await conn.sendMessage(from, { react: { text: "✅", key: m.key } });
+    await reply(`✅ VCF file generated with ${participants.length} contacts.`);
 
   } catch (err) {
     console.error("❌ VCF Error:", err);
