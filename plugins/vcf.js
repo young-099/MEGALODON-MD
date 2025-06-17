@@ -15,14 +15,22 @@ cmd({
     await conn.sendMessage(from, { react: { text: "⏳", key: m.key } });
 
     const metadata = await conn.groupMetadata(from);
-    const participants = metadata.participants;
+    const participants = metadata.participants || [];
+
+    if (participants.length === 0) return reply("❌ No participants found.");
 
     let vcfContent = "";
 
-    participants.forEach((p, i) => {
+    // Limite de sécurité pour éviter les fichiers trop lourds (256 contacts max)
+    const maxContacts = 256;
+    const slicedParticipants = participants.slice(0, maxContacts);
+
+    for (let i = 0; i < slicedParticipants.length; i++) {
+      const p = slicedParticipants[i];
       const number = p.id.split("@")[0];
-      const name = store.contacts[p.id]?.name || p?.notify || `Group Contact ${i + 1}`;
-      const safeName = name.replace(/[^\w\s\-]/g, ""); // sanitize name
+      const nameFromStore = store.contacts?.[p.id]?.name;
+      const notifyName = p?.notify;
+      const safeName = (nameFromStore || notifyName || `Contact ${i + 1}`).replace(/[^\w\s\-]/g, "");
 
       vcfContent += `BEGIN:VCARD
 VERSION:3.0
@@ -31,24 +39,21 @@ N:${safeName};;;;
 TEL;type=CELL;waid=${number}:+${number}
 END:VCARD
 `;
+    }
+
+    // Envoi du fichier VCF
+    await conn.sendMessage(from, {
+      document: Buffer.from(vcfContent, "utf-8"),
+      mimetype: "text/x-vcard",
+      fileName: "MEGALODON_MD.vcf"
     });
 
-    await conn.sendMessage(
-      from,
-      {
-        document: Buffer.from(vcfContent, "utf-8"),
-        mimetype: "text/vcard",
-        fileName: "MEGALODON_MD.vcf"
-      },
-      { quoted: m }
-    );
-
     await conn.sendMessage(from, { react: { text: "✅", key: m.key } });
-    await reply(`✅ VCF file generated with ${participants.length} contacts.`);
+    await reply(`✅ VCF file generated with ${slicedParticipants.length} contacts.`);
 
   } catch (err) {
     console.error("❌ VCF Error:", err);
-    reply("An error occurred while generating the VCF file.");
+    await reply("❌ An error occurred while generating the VCF file.");
     await conn.sendMessage(from, { react: { text: "❌", key: m.key } });
   }
 });
