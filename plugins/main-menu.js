@@ -24,6 +24,7 @@ cmd({
 },
 async (dyby, mek, m, { from, reply }) => {
   try {
+    const sender = m?.sender || mek?.key?.participant || mek?.key?.remoteJid || 'unknown@s.whatsapp.net';
     const totalCommands = commands.length;
     const date = moment().tz("America/Port-au-Prince").format("dddd, DD MMMM YYYY");
 
@@ -37,14 +38,15 @@ async (dyby, mek, m, { from, reply }) => {
 
     let dybymenu = `
 *╭══〘 𝐌𝐄𝐆𝐀𝐋𝐎𝐃𝐎𝐍-𝐌𝐃 〙*
-*┃❍* *ᴜsᴇʀ* : @${m.sender.split("@")[0]}
-*┃❍* *ʀᴜɴᴛɪᴍᴇ* : ${uptime()}
-*┃❍* *ᴍᴏᴅᴇ* : *${config.MODE}*
-*┃❍* *ᴘʀᴇғɪx* : [${config.PREFIX}]
-*┃❍* *ᴩʟᴜɢɪɴ* :  ${totalCommands}
-*┃❍* *ᴅᴇᴠ* : *ᴅʏʙʏ ᴛᴇᴄʜ*
-*┃❍* *ᴠᴇʀsɪᴏɴs* : *1.0.0*
+*┃❍* *User* : @${sender.split("@")[0]}
+*┃❍* *Uptime* : ${uptime()}
+*┃❍* *Mode* : *${config.MODE}*
+*┃❍* *Prefix* : [${config.PREFIX}]
+*┃❍* *Plugins* : ${totalCommands}
+*┃❍* *Dev* : *ᴅʏʙʏ ᴛᴇᴄʜ*
+*┃❍* *Version* : *1.0.0*
 *╰════════════════⊷*`;
+
     let category = {};
     for (let cmd of commands) {
       if (!cmd.category) continue;
@@ -60,16 +62,16 @@ async (dyby, mek, m, { from, reply }) => {
         const usage = cmd.pattern.split('|')[0];
         dybymenu += `\n├❃ ${config.PREFIX}${toSmallCaps(usage)}`;
       });
-  dybymenu += `\n┗━━━━━━━━━━━━━━❃`;
+      dybymenu += `\n┗━━━━━━━━━━━━━━❃`;
     }
 
     dybymenu += `\n`;
-    
-await dyby.sendMessage(from, {
+
+    await dyby.sendMessage(from, {
       image: { url: config.MENU_IMAGE_URL },
       caption: dybymenu,
       contextInfo: {
-        mentionedJid: [m.sender],
+        mentionedJid: [sender],
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
@@ -80,7 +82,6 @@ await dyby.sendMessage(from, {
       }
     }, { quoted: mek });
 
-    
   } catch (e) {
     console.error(e);
     reply(`❌ Error: ${e.message}`);
