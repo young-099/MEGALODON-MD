@@ -1,7 +1,6 @@
 const config = require('../config');
 const moment = require('moment-timezone');
 const { cmd, commands } = require('../command');
-const axios = require('axios');
 
 function toSmallCaps(str) {
   const smallCaps = {
@@ -24,7 +23,7 @@ cmd({
 },
 async (dyby, mek, m, { from, reply }) => {
   try {
-    const sender = m?.sender || mek?.key?.participant || mek?.key?.remoteJid || 'unknown@s.whatsapp.net';
+    const sender = (m && m.sender) ? m.sender : (mek?.key?.participant || mek?.key?.remoteJid || 'unknown@s.whatsapp.net');
     const totalCommands = commands.length;
     const date = moment().tz("America/Port-au-Prince").format("dddd, DD MMMM YYYY");
 
@@ -38,15 +37,16 @@ async (dyby, mek, m, { from, reply }) => {
 
     let dybymenu = `
 *╭══〘 𝐌𝐄𝐆𝐀𝐋𝐎𝐃𝐎𝐍-𝐌𝐃 〙*
-*┃❍* *User* : @${sender.split("@")[0]}
-*┃❍* *Uptime* : ${uptime()}
-*┃❍* *Mode* : *${config.MODE}*
-*┃❍* *Prefix* : [${config.PREFIX}]
-*┃❍* *Plugins* : ${totalCommands}
-*┃❍* *Dev* : *ᴅʏʙʏ ᴛᴇᴄʜ*
-*┃❍* *Version* : *1.0.0*
+*┃❍* *ᴜsᴇʀ* : @${sender.split("@")[0]}
+*┃❍* *ʀᴜɴᴛɪᴍᴇ* : ${uptime()}
+*┃❍* *ᴍᴏᴅᴇ* : *${config.MODE}*
+*┃❍* *ᴘʀᴇғɪx* : [${config.PREFIX}]
+*┃❍* *ᴩʟᴜɢɪɴ* :  ${totalCommands}
+*┃❍* *ᴅᴇᴠ* : *ᴅʏʙʏ ᴛᴇᴄʜ*
+*┃❍* *ᴠᴇʀsɪᴏɴ* : *1.0.0*
 *╰════════════════⊷*`;
 
+    // Organise commands by category
     let category = {};
     for (let cmd of commands) {
       if (!cmd.category) continue;
@@ -54,6 +54,7 @@ async (dyby, mek, m, { from, reply }) => {
       category[cmd.category].push(cmd);
     }
 
+    // Build command list
     const keys = Object.keys(category).sort();
     for (let k of keys) {
       dybymenu += `\n\n┌── 『 ${k.toUpperCase()} MENU 』`;
@@ -65,17 +66,16 @@ async (dyby, mek, m, { from, reply }) => {
       dybymenu += `\n┗━━━━━━━━━━━━━━❃`;
     }
 
-    dybymenu += `\n`;
-
+    // Envoi du menu avec image (ou texte si image échoue)
     await dyby.sendMessage(from, {
-      image: { url: config.MENU_IMAGE_URL },
+      image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/wgxjam.jpg' },
       caption: dybymenu,
       contextInfo: {
         mentionedJid: [sender],
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363401051937059@newsletter',
+          newsletterJid: config.newsletterJid || '120363401051937059@newsletter',
           newsletterName: '𝐌𝐄𝐆𝐀𝐋𝐎𝐃𝐎𝐍-𝐌𝐃',
           serverMessageId: 143
         }
@@ -83,7 +83,7 @@ async (dyby, mek, m, { from, reply }) => {
     }, { quoted: mek });
 
   } catch (e) {
-    console.error(e);
-    reply(`❌ Error: ${e.message}`);
+    console.error("❌ Error in menu:", e);
+    reply(`❌ Menu error: ${e.message}`);
   }
 });
