@@ -1,1 +1,106 @@
-function _0x5924(_0xe853d2,_0x339ac8){const _0xc19437=_0xc194();return _0x5924=function(_0x5924c3,_0x191454){_0x5924c3=_0x5924c3-(-0x49*0x4d+-0x25b7+0x3*0x140b);let _0x1e8e8d=_0xc19437[_0x5924c3];return _0x1e8e8d;},_0x5924(_0xe853d2,_0x339ac8);}(function(_0x1f823d,_0x4aa015){function _0x2bfcd7(_0x150e96,_0x4fdcb2,_0x599c91,_0x467c12){return _0x5924(_0x4fdcb2-0x35f,_0x150e96);}function _0x12aa5d(_0x5cddcb,_0x54da49,_0x1de718,_0xbc98d7){return _0x5924(_0x1de718- -0x36a,_0x5cddcb);}const _0x339fe9=_0x1f823d();while(!![]){try{const _0x5edf4f=-parseInt(_0x2bfcd7(0x419,0x40e,0x446,0x467))/(0x1b5*-0x10+-0x127+-0x1*-0x1c78)*(-parseInt(_0x12aa5d(-0x2a3,-0x232,-0x243,-0x252))/(-0x61b*0x3+-0x1*-0xc50+-0x39*-0x1b))+parseInt(_0x12aa5d(-0x26b,-0x256,-0x247,-0x1f4))/(-0xe3*-0x2+0x2105*-0x1+0x1f42)*(-parseInt(_0x2bfcd7(0x49e,0x492,0x460,0x4ed))/(-0x38*-0xad+0x1c1f+0x1*-0x41f3))+parseInt(_0x2bfcd7(0x479,0x42f,0x428,0x48d))/(0x1fc+-0x1*-0x260a+-0x85*0x4d)*(-parseInt(_0x2bfcd7(0x41d,0x42e,0x465,0x457))/(-0x1*0x1ed+0x28c*-0x4+-0x1*-0xc23))+-parseInt(_0x2bfcd7(0x45b,0x47b,0x4ce,0x4ce))/(0x15c5+-0x19e9+0x42b*0x1)+parseInt(_0x2bfcd7(0x495,0x477,0x4a5,0x47e))/(-0x15b5*-0x1+0xe0*0x1a+-0x2c6d)+parseInt(_0x12aa5d(-0x298,-0x2a9,-0x2e9,-0x2c5))/(0x5*-0x1be+-0x7e2*-0x2+-0x705)*(parseInt(_0x2bfcd7(0x482,0x454,0x493,0x44d))/(-0x1c70+-0x81a+-0x2494*-0x1))+parseInt(_0x2bfcd7(0x3d9,0x40a,0x429,0x45d))/(0x1a9c*0x1+0x1f6d*-0x1+0x4dc)*(parseInt(_0x12aa5d(-0x295,-0x302,-0x2f1,-0x320))/(-0x2*0x10cc+0x9*0x127+0x1745));if(_0x5edf4f===_0x4aa015)break;else _0x339fe9['push'](_0x339fe9['shift']());}catch(_0x3447e8){_0x339fe9['push'](_0x339fe9['shift']());}}}(_0xc194,0x10ab74+0x1*0xe4651+-0x1414d8));const _0x339ac8=(function(){let _0x36bf8d=!![];return function(_0x2511bc,_0x55d2ad){const _0x9a3801=_0x36bf8d?function(){function _0x34105e(_0x174987,_0x316a2f,_0x1a4ccb,_0x3f9a3e){return _0x5924(_0x316a2f- -0x12d,_0x3f9a3e);}if(_0x55d2ad){const _0x4fd749=_0x55d2ad[_0x34105e(-0x94,-0x53,-0x60,-0x6d)](_0x2511bc,arguments);return _0x55d2ad=null,_0x4fd749;}}:function(){};return _0x36bf8d=![],_0x9a3801;};}()),_0xe8
+const { cmd } = require('../command');
+const { runtime } = require('../lib/functions');
+const config = require('../config');
+const pkg = require('../package.json');
+
+cmd({
+    pattern: "uptime",
+    alias: ["runtime", "run"],
+    desc: "Show bot uptime with stylish formats",
+    category: "main",
+    react: "⏱️",
+    filename: __filename
+},
+async (conn, mek, m, { from, reply, args }) => {
+    try {
+        const uptime = runtime(process.uptime());
+        const seconds = Math.floor(process.uptime());
+        const startTime = new Date(Date.now() - seconds * 1000);
+        const version = pkg.version || "1.0.0";
+
+        const styles = [
+`╭───『 UPTIME 』───⳹
+│ ⏱️ ${uptime}
+│ 🧭 ${seconds} seconds
+│ 🚀 Started: ${startTime.toLocaleString()}
+╰────────────────⳹
+> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`,
+
+`🅤🅟🅣🅘🅜🅔 🅢🅣🅢🅣🅤🅢
+♢ Running: ${uptime}
+♢ Seconds: ${seconds}
+♢ Since: ${startTime.toLocaleDateString()}
+> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`,
+
+`┌──────────────────────┐
+│  ⚡ UPTIME STATUS ⚡  
+├─────────────────────
+│ • Time: ${uptime}
+│ • Seconds: ${seconds}
+│ • Started: ${startTime.toLocaleString()}
+│ • Version: ${version}
+└──────────────────────┘`,
+
+`▰▰▰▰▰ 🅤🅟🅣🅘🅜🅔 ▰▰▰▰▰
+> ⏳ ${uptime}
+> 🕰️ ${startTime.toLocaleString()}
+> 🔢 ${seconds} seconds
+> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`,
+
+`╔══════════════════════╗
+║   𝐌𝐄𝐆𝐀𝐋𝐎𝐃𝐎𝐍-𝐌𝐃 UPTIME    
+╠══════════════════════
+║  RUNTIME: ${uptime}
+║  SECONDS: ${seconds}
+║  SINCE: ${startTime.toLocaleString()}
+╚══════════════════════╝`,
+
+`> ⏱️ *UᎮTIMᏋ ᎦTᏘTUᎦ* ⏱️
+> 🟢 Online for: ${uptime}
+> 🔢 Seconds: ${seconds}
+> 📅 Since: ${startTime.toLocaleString()}
+> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`,
+
+`┏━━━━━━━━━━━━━━━━━━┓
+┃  𝐌𝐄𝐆𝐀𝐋𝐎𝐃𝐎𝐍-𝐌𝐃  
+┗━━━━━━━━━━━━━━━━━━┛
+◈ Duration: ${uptime}
+◈ Seconds: ${seconds}
+◈ Start Time: ${startTime.toLocaleString()}
+◈ Stability: 100%
+◈ Version: ${version}
+> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`
+        ];
+
+        let selectedStyle;
+        if (args[0] && args[0].toLowerCase().startsWith("style")) {
+            const index = parseInt(args[0].replace("style", "")) - 1;
+            if (!isNaN(index) && styles[index]) {
+                selectedStyle = styles[index];
+            } else {
+                return reply(`❌ Style not found.\n✅ Use: style1 to style${styles.length}`);
+            }
+        } else {
+            selectedStyle = styles[Math.floor(Math.random() * styles.length)];
+        }
+
+        await conn.sendMessage(from, {
+            image: { url: 'https://files.catbox.moe/nzc6xk.jpg' },
+            caption: selectedStyle,
+            contextInfo: {
+                mentionedJid: [m.sender],
+                forwardingScore: 999,
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: '120363401051937059@newsletter',
+                    newsletterName: '𝐌𝐄𝐆𝐀𝐋𝐎𝐃𝐎𝐍-𝐌𝐃',
+                    serverMessageId: 143
+                }
+            }
+        }, { quoted: mek });
+
+    } catch (e) {
+        console.error("Uptime Error:", e);
+        reply(`❌ Error: ${e.message}`);
+    }
+});
