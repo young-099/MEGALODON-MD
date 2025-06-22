@@ -29,27 +29,27 @@ const getTargetUser = (m, args) => {
 // 📌 setsudo: Ajouter un owner temporaire
 cmd({
   pattern: "setsudo",
-  alias: ["addsudo", "addowner"],
+  alias: ["addsudo", "sudo add"],
   desc: "Add a temporary owner",
   category: "owner",
   react: "😇",
   filename: __filename
 }, async (conn, mek, m, { from, args, isCreator, reply }) => {
-  if (!isCreator) return reply("_❗ Only the bot owner can use this command._");
+  if (!isCreator) return reply("_❗ ᴏɴʟʏ ᴛʜᴇ ʙᴏᴛ ᴏᴡɴᴇʀ ᴄᴀɴ ᴜsᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ._");
 
   const target = getTargetUser(m, args);
-  if (!target) return reply("❌ Please tag, reply or enter a valid number.");
+  if (!target) return reply("❌ ᴘʟᴇᴀsᴇ ᴛᴀɢ, ʀᴇᴘʟʏ ᴏʀ ᴇɴᴛᴇʀ ᴀ ᴠᴀʟɪᴅ ɴᴜᴍʙᴇʀ.");
 
   const owners = getOwners();
   if (owners.includes(target)) {
-    return reply("⚠️ This user is already a sudo owner.");
+    return reply("⚠️ ᴛʜɪs ᴜsᴇʀ ɪs ᴀʟʀᴇᴀᴅʏ ᴀ sᴜᴅᴏ ᴏᴡɴᴇʀ.");
   }
 
   saveOwners([...owners, target]);
 
   await conn.sendMessage(from, {
-    image: { url: "https://files.catbox.moe/xc6eca.jpg" },
-    caption: `✅ Added @${target.replace(/@s\.whatsapp\.net$/, "")} as sudo owner.`,
+    image: { url: "https://files.catbox.moe/24h7lw.jpg" },
+    caption: `✅ ᴀᴅᴅᴇᴅ @${target.replace(/@s\.whatsapp\.net$/, "")} ᴀs sᴜᴅᴏ ᴏᴡɴᴇʀ.`,
     mentions: [target]
   }, { quoted: mek });
 });
@@ -63,47 +63,47 @@ cmd({
   react: "🫩",
   filename: __filename
 }, async (conn, mek, m, { from, args, isCreator, reply }) => {
-  if (!isCreator) return reply("_❗ Only the bot owner can use this command._");
+  if (!isCreator) return reply("_❗ ᴏɴʟʏ ᴛʜᴇ ʙᴏᴛ ᴏᴡɴᴇʀ ᴄᴀɴ ᴜsᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ._");
 
   const target = getTargetUser(m, args);
-  if (!target) return reply("❌ Please tag, reply or enter a valid number.");
+  if (!target) return reply("❌ ᴘʟᴇᴀsᴇ ᴛᴀɢ, ʀᴇᴘʟʏ ᴏʀ ᴇɴᴛᴇʀ ᴀ ᴠᴀʟɪᴅ ɴᴜᴍʙᴇʀ.");
 
   const owners = getOwners();
   if (!owners.includes(target)) {
-    return reply("⚠️ This user is not a sudo owner.");
+    return reply("⚠️ ᴛʜɪs ᴜsᴇʀ ɪs ɴᴏᴛ ᴀ sᴜᴅᴏ ᴏᴡɴᴇʀ.");
   }
 
   saveOwners(owners.filter(x => x !== target));
 
   await conn.sendMessage(from, {
-    image: { url: "https://files.catbox.moe/xc6eca.jpg" },
-    caption: `✅ Removed @${target.replace(/@s\.whatsapp\.net$/, "")} from sudo owners.`,
+    image: { url: "https://files.catbox.moe/24h7lw.jpg" },
+    caption: `✅ ʀᴇᴍᴏᴠᴇᴅ @${target.replace(/@s\.whatsapp\.net$/, "")} ғʀᴏᴍ sᴜᴅᴏ ᴏᴡɴᴇʀs.`,
     mentions: [target]
   }, { quoted: mek });
 });
 
 // 📌 listsudo: Liste des owners temporaires
 cmd({
-  pattern: "listsudo",
+  pattern: "getsudo",
   alias: ["listowner"],
   desc: "List all temporary owners",
   category: "owner",
   react: "📋",
   filename: __filename
 }, async (conn, mek, m, { from, isCreator, reply }) => {
-  if (!isCreator) return reply("_❗ Only the bot owner can use this command._");
+  if (!isCreator) return reply("_❗ ᴏɴʟʏ ᴛʜᴇ ʙᴏᴛ ᴏᴡɴᴇʀ ᴄᴀɴ ᴜsᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ._");
 
   const owners = getOwners();
 
   if (owners.length === 0) {
-    return reply("📭 No sudo owners found.");
+    return reply("📭 ɴᴏ sᴜᴅᴏ ᴏᴡɴᴇʀs ғᴏᴜɴᴅ.");
   }
 
   const list = owners.map((id, i) => `${i + 1}. @${id.replace(/@s\.whatsapp\.net$/, "")}`).join("\n");
 
   await conn.sendMessage(from, {
-    image: { url: "https://files.catbox.moe/xc6eca.jpg" },
-    caption: `🤴 *List of Sudo Owners:*\n\n${list}`,
+    image: { url: "https://files.catbox.moe/24h7lw.jpg" },
+    caption: `🤴 *ʟɪsᴛ ᴏғ sᴜᴅᴏ ᴏᴡɴᴇʀs:*\n\n${list}`,
     mentions: owners
   }, { quoted: mek });
 });
