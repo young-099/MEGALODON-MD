@@ -43,7 +43,7 @@ async (dyby, mek, m, { from, reply }) => {
 *┃👑* *ᴘʀᴇғɪx* : [${config.PREFIX}]
 *┃👑* *ᴩʟᴜɢɪɴ* :  ${totalCommands}
 *┃👑* *ᴅᴇᴠ* : *ᴅʏʙʏ ᴛᴇᴄʜ*
-*┃👑* *ᴠᴇʀsɪᴏɴ* : *1.0.0*
+*┃👑* *ᴠᴇʀsɪᴏɴ* : *`1.0.0`*
 *╰════════════════⊷*`;
 
     // Organise commands by category
