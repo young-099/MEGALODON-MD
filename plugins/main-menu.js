@@ -14,11 +14,11 @@ function toSmallCaps(str) {
 
 cmd({
   pattern: "menu",
-  alias: ["❄️", "mega", "allmenu"],
+  alias: ["💢", "mega", "allmenu"],
   use: '.menu',
   desc: "Show all bot commands",
   category: "menu",
-  react: "❄️",
+  react: "💢",
   filename: __filename
 },
 async (dyby, mek, m, { from, reply }) => {
@@ -57,7 +57,7 @@ async (dyby, mek, m, { from, reply }) => {
     // Build command list
     const keys = Object.keys(category).sort();
     for (let k of keys) {
-      dybymenu += `\n\n┌── 『 ${k.toUpperCase()} MENU 』`;
+      dybymenu += `\n\n┌── 『 *${k.toUpperCase()} MENU* 』`;
       const cmds = category[k].filter(c => c.pattern).sort((a, b) => a.pattern.localeCompare(b.pattern));
       cmds.forEach((cmd) => {
         const usage = cmd.pattern.split('|')[0];
@@ -68,7 +68,7 @@ async (dyby, mek, m, { from, reply }) => {
 
     // Envoi du menu avec image (ou texte si image échoue)
     await dyby.sendMessage(from, {
-      image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/wgxjam.jpg' },
+      image: { url: 'https://files.catbox.moe/w1l8b0.jpg' },
       caption: dybymenu,
       contextInfo: {
         mentionedJid: [sender],
