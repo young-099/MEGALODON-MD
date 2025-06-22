@@ -20,7 +20,7 @@ async (conn, mek, m, { from, quoted, reply, isOwner }) => {
     try {
         // Owner check
         if (!isOwner) {
-            return reply("🚫 *Owner Only Command!* You're not authorized to view bot configurations.");
+            return reply("🚫 *ᴏᴡɴᴇʀ ᴏɴʟʏ ᴄᴏᴍᴍᴀɴᴅ!* ʏᴏᴜ'ʀᴇ ɴᴏᴛ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴛᴏ ᴠɪᴇᴡ ʙᴏᴛ ᴄᴏɴғɪɢᴜʀᴀᴛɪᴏɴs.");
         }
 
         const isEnabled = (value) => value && value.toString().toLowerCase() === "true";
@@ -29,25 +29,25 @@ async (conn, mek, m, { from, quoted, reply, isOwner }) => {
 ╭───『 *MEGALODON-MD CONFIG* 』───❏
 │
 ├─❏ *🤖 BOT INFO*
-│  ├─∘ *Name:* ${config.BOT_NAME}
-│  ├─∘ *Prefix:* ${config.PREFIX}
-│  ├─∘ *Owner:* ${config.OWNER_NAME}
-│  ├─∘ *Number:* ${config.OWNER_NUMBER}
-│  └─∘ *Mode:* ${config.MODE.toUpperCase()}
+│  ├─∘ *ɴᴀᴍᴇ:* ${config.BOT_NAME}
+│  ├─∘ *ᴘʀᴇғɪx:* ${config.PREFIX}
+│  ├─∘ *ᴏᴡɴᴇʀ:* ${config.OWNER_NAME}
+│  ├─∘ *ɴᴜᴍʙᴇʀ:* ${config.OWNER_NUMBER}
+│  └─∘ *ᴍᴏᴅᴇ:* ${config.MODE.toUpperCase()}
 │
 ├─❏ *⚙️ CORE SETTINGS*
-│  ├─∘ *Public Mode:* ${isEnabled(config.PUBLIC_MODE) ? "✅" : "❌"}
-│  ├─∘ *Always Online:* ${isEnabled(config.ALWAYS_ONLINE) ? "✅" : "❌"}
-│  ├─∘ *Read Msgs:* ${isEnabled(config.READ_MESSAGE) ? "✅" : "❌"}
-│  └─∘ *Read Cmds:* ${isEnabled(config.READ_CMD) ? "✅" : "❌"}
+│  ├─∘ *ᴘᴜʙʟɪᴄ ᴍᴏᴅᴇ:* ${isEnabled(config.PUBLIC_MODE) ? "✅" : "❌"}
+│  ├─∘ *ᴀʟᴡᴀʏs ᴏɴʟɪɴᴇ:* ${isEnabled(config.ALWAYS_ONLINE) ? "✅" : "❌"}
+│  ├─∘ *ʀᴇᴀᴅ ᴍsɢs:* ${isEnabled(config.READ_MESSAGE) ? "✅" : "❌"}
+│  └─∘ *ʀᴇᴀᴅ ᴄᴍᴅs:* ${isEnabled(config.READ_CMD) ? "✅" : "❌"}
 │
 ├─❏ *🔌 AUTOMATION*
-│  ├─∘ *Auto Reply:* ${isEnabled(config.AUTO_REPLY) ? "✅" : "❌"}
-│  ├─∘ *Auto React:* ${isEnabled(config.AUTO_REACT) ? "✅" : "❌"}
-│  ├─∘ *Custom React:* ${isEnabled(config.CUSTOM_REACT) ? "✅" : "❌"}
-│  ├─∘ *React Emojis:* ${config.CUSTOM_REACT_EMOJIS}
-│  ├─∘ *Auto Sticker:* ${isEnabled(config.AUTO_STICKER) ? "✅" : "❌"}
-│  └─∘ *Auto Voice:* ${isEnabled(config.AUTO_VOICE) ? "✅" : "❌"}
+│  ├─∘ *ᴀᴜᴛᴏ ʀᴇᴘʟʏ:* ${isEnabled(config.AUTO_REPLY) ? "✅" : "❌"}
+│  ├─∘ *ᴀᴜᴛᴏ ʀᴇᴀᴄᴛ:* ${isEnabled(config.AUTO_REACT) ? "✅" : "❌"}
+│  ├─∘ *ᴄᴜsᴛᴏᴍ ʀᴇᴀᴄᴛ:* ${isEnabled(config.CUSTOM_REACT) ? "✅" : "❌"}
+│  ├─∘ *ʀᴇᴀᴄᴛ ᴇᴍᴏᴊɪs:* ${config.CUSTOM_REACT_EMOJIS}
+│  ├─∘ *ᴀᴜᴛᴏ sᴛɪᴄᴋᴇʀ:* ${isEnabled(config.AUTO_STICKER) ? "✅" : "❌"}
+│  └─∘ *ᴀᴜᴛᴏ ᴠᴏɪᴄᴇ:* ${isEnabled(config.AUTO_VOICE) ? "✅" : "❌"}
 │
 ├─❏ *📢 STATUS SETTINGS*
 │  ├─∘ *Status Seen:* ${isEnabled(config.AUTO_STATUS_SEEN) ? "✅" : "❌"}
@@ -56,22 +56,22 @@ async (conn, mek, m, { from, quoted, reply, isOwner }) => {
 │  └─∘ *Status Msg:* ${config.AUTO_STATUS_MSG}
 │
 ├─❏ *🛡️ SECURITY*
-│  ├─∘ *Anti-Link:* ${isEnabled(config.ANTI_LINK) ? "✅" : "❌"}
-│  ├─∘ *Anti-Bad:* ${isEnabled(config.ANTI_BAD) ? "✅" : "❌"}
-│  ├─∘ *Anti-VV:* ${isEnabled(config.ANTI_VV) ? "✅" : "❌"}
-│  └─∘ *Del Links:* ${isEnabled(config.DELETE_LINKS) ? "✅" : "❌"}
+│  ├─∘ *ᴀɴᴛɪ-ʟɪɴᴋ:* ${isEnabled(config.ANTI_LINK) ? "✅" : "❌"}
+│  ├─∘ *ᴀɴᴛɪ-ʙᴀᴅ:* ${isEnabled(config.ANTI_BAD) ? "✅" : "❌"}
+│  ├─∘ *ᴀɴᴛɪ-ᴠᴠ:* ${isEnabled(config.ANTI_VV) ? "✅" : "❌"}
+│  └─∘ *ᴅᴇʟ ʟɪɴᴋs:* ${isEnabled(config.DELETE_LINKS) ? "✅" : "❌"}
 │
 ├─❏ *🎨 MEDIA*
-│  ├─∘ *Alive Img:* ${config.ALIVE_IMG}
-│  ├─∘ *Menu Img:* ${config.MENU_IMAGE_URL}
-│  ├─∘ *Alive Msg:* ${config.LIVE_MSG}
-│  └─∘ *Sticker Pack:* ${config.STICKER_NAME}
+│  ├─∘ *ᴀʟɪᴠᴇ ɪᴍɢ:* ${config.ALIVE_IMG}
+│  ├─∘ *ᴍᴇɴᴜ ɪᴍɢ:* ${config.MENU_IMAGE_URL}
+│  ├─∘ *ᴀʟɪᴠᴇ ᴍsɢ:* ${config.LIVE_MSG}
+│  └─∘ *sᴛɪᴄᴋᴇʀ ᴘᴀᴄᴋ:* ${config.STICKER_NAME}
 │
 ├─❏ *⏳ MISC*
-│  ├─∘ *Auto Typing:* ${isEnabled(config.AUTO_TYPING) ? "✅" : "❌"}
-│  ├─∘ *Auto Record:* ${isEnabled(config.AUTO_RECORDING) ? "✅" : "❌"}
-│  ├─∘ *Anti-Del Path:* ${config.ANTI_DEL_PATH}
-│  └─∘ *Dev Number:* ${config.DEV}
+│  ├─∘ *ᴀᴜᴛᴏ ᴛʏᴘɪɴɢ:* ${isEnabled(config.AUTO_TYPING) ? "✅" : "❌"}
+│  ├─∘ *ᴀᴜᴛᴏ ʀᴇᴄᴏʀᴅ:* ${isEnabled(config.AUTO_RECORDING) ? "✅" : "❌"}
+│  ├─∘ *ᴀɴᴛɪ-ᴅᴇʟ ᴘᴀᴛʜ:* ${config.ANTI_DEL_PATH}
+│  └─∘ *ᴅᴇᴠ ɴᴜᴍʙᴇʀ:* ${config.DEV}
 │
 ╰───『 *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍᴇɢᴀʟᴏᴅᴏɴ ᴍᴅ* 』──❏
 `;
@@ -79,7 +79,7 @@ async (conn, mek, m, { from, quoted, reply, isOwner }) => {
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://files.catbox.moe/frns4k.jpg` },
+                image: { url: `https://files.catbox.moe/w1l8b0.jpg` },
                 caption: envSettings,
                 contextInfo: {
                     mentionedJid: [m.sender],
