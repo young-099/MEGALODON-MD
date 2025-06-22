@@ -37,13 +37,13 @@ async (dyby, mek, m, { from, reply }) => {
 
     let dybymenu = `
 *╭══〘 𝐌𝐄𝐆𝐀𝐋𝐎𝐃𝐎𝐍-𝐌𝐃 〙*
-*┃❍* *ᴜsᴇʀ* : @${sender.split("@")[0]}
-*┃❍* *ʀᴜɴᴛɪᴍᴇ* : ${uptime()}
-*┃❍* *ᴍᴏᴅᴇ* : *${config.MODE}*
-*┃❍* *ᴘʀᴇғɪx* : [${config.PREFIX}]
-*┃❍* *ᴩʟᴜɢɪɴ* :  ${totalCommands}
-*┃❍* *ᴅᴇᴠ* : *ᴅʏʙʏ ᴛᴇᴄʜ*
-*┃❍* *ᴠᴇʀsɪᴏɴ* : *1.0.0*
+*┃👑* *ᴜsᴇʀ* : @${sender.split("@")[0]}
+*┃👑* *ʀᴜɴᴛɪᴍᴇ* : ${uptime()}
+*┃👑* *ᴍᴏᴅᴇ* : *${config.MODE}*
+*┃👑* *ᴘʀᴇғɪx* : [${config.PREFIX}]
+*┃👑* *ᴩʟᴜɢɪɴ* :  ${totalCommands}
+*┃👑* *ᴅᴇᴠ* : *ᴅʏʙʏ ᴛᴇᴄʜ*
+*┃👑* *ᴠᴇʀsɪᴏɴ* : *1.0.0*
 *╰════════════════⊷*`;
 
     // Organise commands by category
@@ -75,7 +75,7 @@ async (dyby, mek, m, { from, reply }) => {
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: config.newsletterJid || '120363401051937059@newsletter',
+          newsletterJid: '120363401051937059@newsletter',
           newsletterName: '𝐌𝐄𝐆𝐀𝐋𝐎𝐃𝐎𝐍-𝐌𝐃',
           serverMessageId: 143
         }
