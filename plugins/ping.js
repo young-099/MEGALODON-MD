@@ -11,14 +11,14 @@ cmd({
     use: ".ping",
     desc: "Check bot's latency",
     category: "main",
-    react: "📟",
+    react: "⚡️",
     filename: __filename
 },
 async (conn, mek, m, { from, sender, reply }) => {
     try {
         const start = Date.now();
 
-        const reactionEmojis = ['🔥', '🌩️', '👑', '🎋', '📟'];
+        const reactionEmojis = ['🔥', '🌩️', '👑', '🎋', '📟', '⚡️'];
         const textEmojis = ['🚀', '✨', '🌀', '📍'];
 
         const reactionEmoji = reactionEmojis[Math.floor(Math.random() * reactionEmojis.length)];
@@ -37,7 +37,7 @@ async (conn, mek, m, { from, sender, reply }) => {
         const ping = end - start;
 
         await conn.sendMessage(from, {
-            text: `*${reactionEmoji} 𝐏๏፝֟ƞ̽g ${ping} ms 📶*`,
+            text: `*${reactionEmoji} 𝐏๏፝֟ƞ̽g ${ping} ms*`,
             contextInfo: {
                 mentionedJid: [sender],
                 forwardingScore: 999,
