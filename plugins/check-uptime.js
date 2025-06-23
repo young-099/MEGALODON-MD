@@ -56,21 +56,6 @@ async (conn, mek, m, { from, reply, args }) => {
 ║  SINCE: ${startTime.toLocaleString()}
 ╚══════════════════════╝`,
 
-`> ⏱️ *UᎮTIMᏋ ᎦTᏘTUᎦ* ⏱️
-> 🟢 Online for: ${uptime}
-> 🔢 Seconds: ${seconds}
-> 📅 Since: ${startTime.toLocaleString()}
-> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`,
-
-`┏━━━━━━━━━━━━━━━━━━┓
-┃  𝐌𝐄𝐆𝐀𝐋𝐎𝐃𝐎𝐍-𝐌𝐃  
-┗━━━━━━━━━━━━━━━━━━┛
-◈ Duration: ${uptime}
-◈ Seconds: ${seconds}
-◈ Start Time: ${startTime.toLocaleString()}
-◈ Stability: 100%
-◈ Version: ${version}
-> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ*`
         ];
 
         let selectedStyle;
@@ -86,7 +71,7 @@ async (conn, mek, m, { from, reply, args }) => {
         }
 
         await conn.sendMessage(from, {
-            image: { url: 'https://files.catbox.moe/nzc6xk.jpg' },
+            image: { url: 'https://files.catbox.moe/w1l8b0.jpg' },
             caption: selectedStyle,
             contextInfo: {
                 mentionedJid: [m.sender],
