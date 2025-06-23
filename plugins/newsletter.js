@@ -14,10 +14,10 @@ cmd({
   reply
 }) => {
   try {
-    if (!q) return reply("❎ Please provide a WhatsApp Channel link.\n\n*Example:* .cinfo https://whatsapp.com/channel/123456789");
+    if (!q) return reply("❎ ᴘʟᴇᴀsᴇ ᴘʀᴏᴠɪᴅᴇ ᴀ ᴡʜᴀᴛsᴀᴘᴘ ᴄʜᴀɴɴᴇʟ ʟɪɴᴋ.\n\n*ᴇxᴀᴍᴘʟᴇ:* .cinfo https://whatsapp.com/channel/123456789");
 
     const match = q.match(/whatsapp\.com\/channel\/([\w-]+)/);
-    if (!match) return reply("⚠️ *Invalid channel link format.*\n\nMake sure it looks like:\nhttps://whatsapp.com/channel/xxxxxxxxx");
+    if (!match) return reply("⚠️ *𝐈𝐧𝐯𝐚𝐥𝐢𝐝 𝐜𝐡𝐚𝐧𝐧𝐞𝐥 ʟɪɴᴋ ғᴏʀᴍᴀᴛ.*\n\nᴍᴀᴋᴇ sᴜʀᴇ ɪᴛ ʟᴏᴏᴋs ʟɪᴋᴇ:\nhttps://whatsapp.com/channel/xxxxxxxxx");
 
     const inviteId = match[1];
 
@@ -31,10 +31,10 @@ cmd({
     if (!metadata || !metadata.id) return reply("❌ Channel not found or inaccessible.");
 
     const infoText = `*— 乂 Channel Info —*\n\n` +
-      `🆔 *ID:* ${metadata.id}\n` +
-      `📌 *Name:* ${metadata.name}\n` +
-      `👥 *Followers:* ${metadata.subscribers?.toLocaleString() || "N/A"}\n` +
-      `📅 *Created on:* ${metadata.creation_time ? new Date(metadata.creation_time * 1000).toLocaleString("id-ID") : "Unknown"}`;
+      `🆔 *ɪᴅ:* ${metadata.id}\n` +
+      `📌 *ɴᴀᴍᴇ:* ${metadata.name}\n` +
+      `👥 *ғᴏʟʟᴏᴡᴇʀs:* ${metadata.subscribers?.toLocaleString() || "N/A"}\n` +
+      `📅 *ᴄʀᴇᴀᴛᴇᴅ ᴏɴ:* ${metadata.creation_time ? new Date(metadata.creation_time * 1000).toLocaleString("id-ID") : "Unknown"}`;
 
     if (metadata.preview) {
       await conn.sendMessage(from, {
