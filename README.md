@@ -106,42 +106,7 @@ DONT FORGET TO FORK 🍴 & STAR 🌟 REPO😇
 <a href='https://app.netlify.com/' target="_blank"><img alt='Netlify' src='https://img.shields.io/badge/-Netlify Deploy-CC00FF?style=for-the-badge&logo=huggingface&logoColor=white'/< width=150 height=28/p></a> </a>
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 <details>
-  
-<b><strong><summary align="" style="color: Yello;">EASIEST METHOD 2</summary></strong></b>
-<p style="text-align: center; font-size: 1.2em;">
- 
 
-## <h3 align=""> HOW TO DEPLOY ON HUGGING FACE</h3>
-<h6 align-"center">
-*❄️ Deploy MEGALODON-MD On Hugging Face For Free !*
-
-`Specs :`
-- v2 CPU
-- 16GB RAM
-
-> `Steps to deploy`
-
-`Step 1`
-1. Go to hugginface.co/join and create an account and verify your email too.
-
-`Step 2`
-1. Go to https://huggingface.co/spaces/DybyTech/MEGALODON-MD
-
-2. Tap on *three dots* _(as shown in image)_
-
-3. Tap on *duplicate space* _(as shown in image)_
-
-`Step 3`
-1. Fill your details, e.g., Session ID, Bot Name, owner number etc...
-
-2. Tap on *duplicate space shown below*
-
-```After that wait 10 seconds & your have deployed it successfuly  for free 24/7```
-
-
-</details>
-
-<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 
 
 ### <h4 align="">7. REPLIT</h4>
@@ -166,12 +131,9 @@ on:
   pull_request:
     branches:
       - main
-  schedule:
-    - cron: '0 */6 * * *'  
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -179,27 +141,19 @@ jobs:
         node-version: [20.x]
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Install FFmpeg
-      run: sudo apt-get install -y ffmpeg
-
-    - name: Start application with timeout
-      run: |
-        timeout 21590s npm start  # Limite l'exécution à 5h 59m 50s
-
-    - name: Save state (Optional)
-      run: |
-        ./save_state.sh
+      - name: Start application
+        run: npm start
 ```
 
 
