@@ -22,7 +22,7 @@ DONT FORGET TO FORK 🍴 & STAR 🌟 REPO😇
   
 --- 
 
-<a><img src='https://files.catbox.moe/w1l8b0.jpg'/></a>
+<a><img src='https://files.catbox.moe/2ozipw.jpg'/></a>
 
 
 
