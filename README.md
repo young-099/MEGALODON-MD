@@ -105,7 +105,6 @@ DONT FORGET TO FORK 🍴 & STAR 🌟 REPO😇
 <p align="">
 <a href='https://app.netlify.com/' target="_blank"><img alt='Netlify' src='https://img.shields.io/badge/-Netlify Deploy-CC00FF?style=for-the-badge&logo=huggingface&logoColor=white'/< width=150 height=28/p></a> </a>
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
-<details>
 
 
 
