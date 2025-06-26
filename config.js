@@ -68,10 +68,6 @@ ANTI_LINK_KICK: process.env.ANTI_LINK_KICK || "false",
 // kick user if share link 
 AUTO_VOICE: process.env.AUTO_VOICE || "false",
 // auto voice messages
-AUTO_STICKER: process.env.AUTO_STICKER || "false",
-// auto stickers 
-AUTO_REPLY: process.env.AUTO_REPLY || "false",
-// automatic text reply 
 ALWAYS_ONLINE: process.env.ALWAYS_ONLINE || "false",
 // always online 
 PUBLIC_MODE: process.env.PUBLIC_MODE || "true",
