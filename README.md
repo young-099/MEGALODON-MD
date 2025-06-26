@@ -99,11 +99,11 @@ DONT FORGET TO FORK 🍴 & STAR 🌟 REPO😇
 <a href='https://dashboard.render.com/web/new' target="_blank"><img alt='Heroku' src='https://img.shields.io/badge/-Render deploy-black?style=for-the-badge&logo=render&logoColot=white'/< width=150 height=28/p></a>
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 
-### <h4 align="">6. LOAD ZIP</h4>
+### <h4 align="">66. DOWNLOAD ZIP</h4>
 <p style="text-align: center; font-size: 1.2em;">
   
 <p align="">
-<a href='https://github.com/DybyTech/MEGALODON-MD/archive/refs/heads/main.zip' target="_blank"><img alt='Zip' src='https://img.shields.io/badge/-Panel Deploy-CC00FF?style=for-the-badge&logo=huggingface&logoColor=white'/< width=150 height=28/p></a> </a>
+<a href='https://github.com/DybyTech/MEGALODON-MD/archive/refs/heads/main.zip' target="_blank"><img alt='Zip' src='https://img.shields.io/badge/-DAWNLOAD ZIP-CC00FF?style=for-the-badge&logo=huggingface&logoColor=white'/< width=150 height=28/p></a> </a>
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 
 
