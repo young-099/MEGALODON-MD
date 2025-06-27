@@ -1,5 +1,5 @@
 // Powered by DybyTech
-
+const { getConfig } = require("./lib/dybydb");
 const fs = require('fs');
 if (fs.existsSync('config.env')) require('dotenv').config({ path: './config.env' });
 
@@ -32,9 +32,9 @@ ANTI_DEL_PATH: process.env.ANTI_DEL_PATH || "inbox",
 // change it to 'same' if you want to resend deleted message in same chat     
 MENTION_REPLY: process.env.MENTION_REPLY || "false",
 // make true if want auto voice reply if someone menetion you 
-MENU_IMAGE_URL: process.env.MENU_IMAGE_URL || "https://files.catbox.moe/2ozipw.jpg",
+MENU_IMAGE_URL: getConfig("MENU_IMAGE_URL") || "https://files.catbox.moe/2ozipw.jpg",
 // add custom menu and mention reply image url
-PREFIX: process.env.PREFIX || ".",
+PREFIX: getConfig("PREFIX") || ".", 
 // add your prifix for bot   
 BOT_NAME: process.env.BOT_NAME || "𝐌𝐄𝐆𝐀𝐋𝐎𝐃𝐎𝐍-𝐌𝐃",
 // add bot name here for menu
@@ -49,13 +49,7 @@ DELETE_LINKS: process.env.DELETE_LINKS || "false",
 OWNER_NUMBER: process.env.OWNER_NUMBER || "50948702213",
 // add your bot owner number
 OWNER_NAME: process.env.OWNER_NAME || "ᴅʏʙʏ ᴛᴇᴄʜ",
-// add bot owner name
-DESCRIPTION: process.env.DESCRIPTION || "*© ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍᴇɢᴀʟᴏᴅᴏɴ ᴍᴅ*",
-// bot description    
-ALIVE_IMG: process.env.ALIVE_IMG || "https://files.catbox.moe/nzc6xk.jpg",
-// image for alive msg
-LIVE_MSG: process.env.LIVE_MSG || "> *MEGALODON-MD*⚡",
-// alive msg content
+// add bot owner name    
 READ_MESSAGE: process.env.READ_MESSAGE || "false",
 // Turn true or false for automatic read msgs
 AUTO_REACT: process.env.AUTO_REACT || "false",
@@ -66,8 +60,6 @@ MODE: process.env.MODE || "public",
 // public/private/inbox/group 
 ANTI_LINK_KICK: process.env.ANTI_LINK_KICK || "false",
 // kick user if share link 
-AUTO_VOICE: process.env.AUTO_VOICE || "false",
-// auto voice messages
 ALWAYS_ONLINE: process.env.ALWAYS_ONLINE || "false",
 // always online 
 PUBLIC_MODE: process.env.PUBLIC_MODE || "true",
