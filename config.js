@@ -1,10 +1,14 @@
 // Powered by DybyTech
 const fs = require('fs');
+const path = require('path');
+const { getConfig } = require("./lib/configdb");
+
 if (fs.existsSync('config.env')) require('dotenv').config({ path: './config.env' });
 
 function convertToBool(text, fault = 'true') {
     return text === fault ? true : false;
 }
+
 
 module.exports = {
 SESSION_ID: process.env.SESSION_ID || "put your session id here",
@@ -15,8 +19,6 @@ AUTO_STATUS_SEEN: process.env.AUTO_STATUS_SEEN || "true",
 // make true or false status auto seen
 AUTO_STATUS_REPLY: process.env.AUTO_STATUS_REPLY || "false",
 // make true if you want auto reply on status 
-AUTO_STICKER: process.env.AUTO_STICKER || "true",
- //make true if you want auto sticker   
 AUTO_STATUS_REACT: process.env.AUTO_STATUS_REACT || "true",
 // make true if you want auto reply on status 
 AUTO_STATUS_MSG: process.env.AUTO_STATUS_MSG || "*SEEN YOUR STATUS BY MEGALODON-MD 🤍*",
@@ -33,9 +35,9 @@ ANTI_DEL_PATH: process.env.ANTI_DEL_PATH || "inbox",
 // change it to 'same' if you want to resend deleted message in same chat     
 MENTION_REPLY: process.env.MENTION_REPLY || "false",
 // make true if want auto voice reply if someone menetion you 
-MENU_IMAGE_URL: process.env.MENU_IMAGE_URL || "https://files.catbox.moe/2ozipw.jpg",
+MENU_IMAGE_URL: getConfig("MENU_IMAGE_URL") || "https://files.catbox.moe/7zfdcq.jpg",
 // add custom menu and mention reply image url
-PREFIX: process.env.PREFIX || ".", 
+PREFIX: getConfig("PREFIX") || ".", 
 // add your prifix for bot   
 BOT_NAME: process.env.BOT_NAME || "𝐌𝐄𝐆𝐀𝐋𝐎𝐃𝐎𝐍-𝐌𝐃",
 // add bot name here for menu
