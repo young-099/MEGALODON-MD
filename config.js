@@ -26,6 +26,10 @@ MENU_IMAGE_URL: getConfig("MENU_IMAGE_URL") || "https://files.catbox.moe/2ozipw.
 // add custom menu and mention reply image url
 PREFIX: getConfig("PREFIX") || ".", 
 // add your prifix for bot   
+OWNER_NAME: getConfig("OWNER_NAME") || "ᴅʏʙʏ ᴛᴇᴄʜ",
+// add bot owner name
+CHATBOT: getConfig("CHATBOT") || "on", 
+//chatbot on/off
 BOT_NAME: process.env.BOT_NAME || "MEGALODON-MD",
 // add bot namw here for menu
 STICKER_NAME: process.env.STICKER_NAME || "MEGALODON-MD",
@@ -39,12 +43,6 @@ DELETE_LINKS: process.env.DELETE_LINKS || "true",
 // automatic delete links witho remove member 
 OWNER_NUMBER: process.env.OWNER_NUMBER || "50948336180",
 // add your bot owner number
-OWNER_NAME: process.env.OWNER_NAME || "ᴅʏʙʏ ᴛᴇᴄʜ",
-// add bot owner name
-ALIVE_IMG: process.env.ALIVE_IMG || "https://files.catbox.moe/2ozipw.jpg",
-// add img for alive msg
-LIVE_MSG: process.env.LIVE_MSG || "> MEGALODON-MD IS HERE",
-// add alive msg here 
 READ_MESSAGE: process.env.READ_MESSAGE || "false",
 // Turn true or false for automatic read msgs
 AUTO_REACT: process.env.AUTO_REACT || "false",
