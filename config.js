@@ -24,7 +24,7 @@ module.exports = {
     // ===== OWNER & DEVELOPER SETTINGS =====
     OWNER_NUMBER: process.env.OWNER_NUMBER || "50934914349",  // Owner's WhatsApp number
     
-    OWNER_NAME: process.env.OWNER_NAME || getConfig("OWNER_NAME") || "𝐘𝐎𝐔𝐍𝐆_𝐒𝐌𝐈𝐋𝐄𝐑",           // Owner's name
+    OWNER_NAME: process.env.OWNER_NAME || getConfig("OWNER_NAME") || "𝐘𝐎𝐔𝐍𝐆-𝐒𝐌𝐈𝐋𝐄𝐑",           // Owner's name
     
     DEV: process.env.DEV || "50948336180",                     // Developer's contact number
     
